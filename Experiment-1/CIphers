@@ -1,0 +1,54 @@
+# Caesar cipher (2-sep-26)
+
+def caesar_cipher(text, shift):
+    result = ""
+    for char in text:
+        if char.isalpha():
+            base = ord('A') if char.isupper() else ord('a')
+            result += chr((ord(char) - base + shift) % 26 + base)
+        else:
+            result += char
+    return result
+
+# Example 
+message = "Adavya Misra"
+shift = 10
+
+encrypted = caesar_cipher(message, shift)
+decrypted = caesar_cipher(encrypted, -shift)
+
+print("Ceaser Cipher")
+print("Original: ", message)
+print("Encrypted:", encrypted)
+print("Decrypted:", decrypted)
+
+
+# vigenere cipher (2-sep-26)
+def vigenere_cipher(text, key, decrypt=False):
+    result = ""
+    key = key.upper()
+    key_index = 0
+
+    for char in text:
+        if char.isalpha():
+            base = ord('A') if char.isupper() else ord('a')
+            shift = ord(key[key_index % len(key)]) - ord('A')
+            if decrypt:
+                shift = -shift
+            result += chr((ord(char) - base + shift) % 26 + base)
+            key_index += 1
+        else:
+            result += char
+    return result
+
+# Example 
+message = "Adavya Misra"
+key = "KEY"
+
+encrypted = vigenere_cipher(message, key)
+decrypted = vigenere_cipher(encrypted, key, decrypt=True)
+print("\n")
+print("Vigenere Cipher")
+print("Original: ", message)
+print("Encrypted:", encrypted)
+print("Decrypted:", decrypted)
