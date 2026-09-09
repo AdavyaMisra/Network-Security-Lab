@@ -1,1 +1,1 @@
-The folder is for all the lab experiments.
+The folder shows the code and the output
