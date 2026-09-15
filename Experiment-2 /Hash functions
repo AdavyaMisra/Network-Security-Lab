@@ -1,0 +1,14 @@
+from hashlib import sha256
+def hashing(plaintext):
+    hash_value = sha256(plaintext.encode()).hexdigest()
+    return hash_value
+
+plaintext = input("enter your text: ")
+print(hashing(plaintext))
+
+def hashing(file_path):
+    hashing = sha256(file_path.encode()).hexdigest()
+    return hashing
+
+file_path = input("enter your file path: ")
+print(hashing(file_path))
