@@ -1,14 +1,14 @@
 from hashlib import sha256
-def hashing(plaintext):
-    hash_value = sha256(plaintext.encode()).hexdigest()
-    return hash_value
 
-plaintext = input("enter your text: ")
-print(hashing(plaintext))
+def hash_text(plaintext):
+    return sha256(plaintext.encode()).hexdigest()
 
-def hashing(file_path):
-    hashing = sha256(file_path.encode()).hexdigest()
-    return hashing
+def hash_file(file_path):
+    with open(file_path, "rb") as file:
+        return sha256(file.read()).hexdigest()
 
-file_path = input("enter your file path: ")
-print(hashing(file_path))
+plaintext = input("Enter your text: ")
+print(hash_text(plaintext))
+
+file_path = input("Enter your file path: ")
+print(hash_file(file_path))
