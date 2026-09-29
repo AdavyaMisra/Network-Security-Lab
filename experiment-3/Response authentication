@@ -1,0 +1,31 @@
+import hashlib
+import time
+import random
+
+def generate_nonce():
+    timestamp = time.time()
+    nonce = random.randint(1, 1000)
+    return nonce
+def hash_response(nonce, secret):
+    combined = str(nonce) + str(secret) 
+    hashed_data = hashlib.sha256(combined.encode()).hexdigest()
+    return hashed_data
+def shared_secret():
+    secret = 1234567890
+    return secret
+
+# Server creates a fresh challenge
+nonce = generate_nonce()
+print("server nonce: ",nonce)
+
+# Client calculates the response
+client_response = hash_response(nonce, shared_secret)
+print("client response: ",client_response)
+
+#  Server calculates the expexted value 
+expected = hash_response(nonce, shared_secret)
+
+if client_response == expected:
+    print("Authentication successful")
+else:
+    print("Authentication failed")
